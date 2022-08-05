@@ -159,26 +159,26 @@
         <hashTree>
           <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
             <collectionProp name="UserParameters.names">
-              <stringProp name="1876124183">PHONENUMBER</stringProp>
-              <stringProp name="0"></stringProp>
-              <stringProp name="0"></stringProp>
+              <stringProp name="40276826">PHONE_NUMBER</stringProp>
+              <stringProp name="78369714">PHONE_NUMBER_CODE</stringProp>
+              <stringProp name="-1483131996">DEVICE_ID</stringProp>
               <stringProp name="0"></stringProp>
               <stringProp name="0"></stringProp>
               <stringProp name="0"></stringProp>
               <stringProp name="0"></stringProp>
             </collectionProp>
             <collectionProp name="UserParameters.thread_values">
-              <collectionProp name="1199313306">
-                <stringProp name="1346664933">&apos;10000&apos; + random.generate({ length: 5, charset: &apos;numeric&apos; })</stringProp>
-                <stringProp name="0"></stringProp>
-                <stringProp name="0"></stringProp>
+              <collectionProp name="1872870166">
+                <stringProp name="-930820524">10000${__Random(00000,99999)}</stringProp>
+                <stringProp name="43139">+91</stringProp>
+                <stringProp name="346097842">${__Random(0000000000,9999999999)}</stringProp>
                 <stringProp name="0"></stringProp>
                 <stringProp name="0"></stringProp>
                 <stringProp name="0"></stringProp>
                 <stringProp name="0"></stringProp>
               </collectionProp>
             </collectionProp>
-            <boolProp name="UserParameters.per_iteration">false</boolProp>
+            <boolProp name="UserParameters.per_iteration">true</boolProp>
           </UserParameters>
           <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Signup" enabled="true">
@@ -188,9 +188,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-	&quot;name&quot;: &quot;vijays&quot;,&#xd;
-	&quot;phoneNumber&quot;:&quot;1000056245&quot;,&#xd;
-	&quot;phoneNumberCode&quot;:&quot;+91&quot;&#xd;
+	&quot;name&quot;: &quot;jMeter User&quot;,&#xd;
+	&quot;phoneNumber&quot;:&quot;${PHONE_NUMBER}&quot;,&#xd;
+	&quot;phoneNumberCode&quot;:&quot;${PHONE_NUMBER_CODE}&quot;&#xd;
 }&#xd;
 </stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
@@ -234,17 +234,16 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="verification code" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Request Verification Code" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-	&quot;phoneNumber&quot;:&quot;1000089756&quot;,&#xd;
-	&quot;phoneNumberCode&quot;:&quot;+91&quot;,&#xd;
-		&quot;deviceId&quot;:&quot;1234567890123478&quot;&#xd;
-&#xd;
+&quot;phoneNumber&quot;:&quot;${PHONE_NUMBER}&quot;,&#xd;
+&quot;phoneNumberCode&quot;:&quot;${PHONE_NUMBER_CODE}&quot;,&#xd;
+&quot;deviceId&quot;:&quot;${DEVICE_ID}&quot;&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
@@ -294,11 +293,10 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-	&quot;phoneNumber&quot;:&quot;1000089756&quot;,&#xd;
-	&quot;phoneNumberCode&quot;:&quot;+91&quot;,&#xd;
-      &quot;deviceId&quot;:&quot;1234567890123478&quot;,&#xd;
+	&quot;phoneNumber&quot;:&quot;${PHONE_NUMBER}&quot;,&#xd;
+	&quot;phoneNumberCode&quot;:&quot;${PHONE_NUMBER_CODE}&quot;,&#xd;
+	&quot;deviceId&quot;:&quot;${DEVICE_ID}&quot;,&#xd;
 	&quot;verificationCode&quot;:&quot;10000&quot;&#xd;
-&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
@@ -351,6 +349,63 @@
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.objects.token</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="users get" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;phoneNumber&quot;:&quot;${PHONE_NUMBER}&quot;,&#xd;
+	&quot;phoneNumberCode&quot;:&quot;${PHONE_NUMBER_CODE}&quot;,&#xd;
+	&quot;deviceId&quot;:&quot;${DEVICE_ID}&quot;,&#xd;
+	&quot;verificationCode&quot;:&quot;10000&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${API_BASE_URL}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/users/${userid}</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Access-Control-Allow-Origin" elementType="Header">
+                  <stringProp name="Header.name">Access-Control-Allow-Origin</stringProp>
+                  <stringProp name="Header.value">*</stringProp>
+                </elementProp>
+                <elementProp name="Cache-Control" elementType="Header">
+                  <stringProp name="Header.name">Cache-Control</stringProp>
+                  <stringProp name="Header.value">no-cache</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">*/*</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer ${token}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
             <hashTree/>
           </hashTree>
         </hashTree>
