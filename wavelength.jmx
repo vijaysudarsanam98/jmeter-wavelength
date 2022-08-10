@@ -668,12 +668,12 @@
           <hashTree/>
           <eu.luminis.jmeter.wssampler.SingleReadWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.SingleReadWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.SingleReadWebSocketSampler" testname="WebSocket Single Read Sampler" enabled="true">
             <boolProp name="TLS">true</boolProp>
-            <stringProp name="server">stagemessagesapi.wvlnth.net/socket.io/?EIO=4&amp;transport=websocket</stringProp>
+            <stringProp name="server">stagemessagesapi.wvlnth.net</stringProp>
             <stringProp name="port">443</stringProp>
-            <stringProp name="path">Bearer ${token}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket</stringProp>
             <stringProp name="connectTimeout">20000</stringProp>
             <stringProp name="dataType">Text</stringProp>
-            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="createNewConnection">true</boolProp>
             <stringProp name="readTimeout">6000</stringProp>
             <boolProp name="optional">false</boolProp>
           </eu.luminis.jmeter.wssampler.SingleReadWebSocketSampler>
